@@ -5,11 +5,16 @@ pipeline {
         MAVEN_HOME = tool name: 'Maven', type: 'maven'
     }
 
+    parameters {
+        string(name: 'KARATE_TAG', defaultValue: '@getAPIwithOffsetLimit', description: 'Karate tag to run')
+    }
+
     stages {
         stage('Checkout') {
             steps {
                 // Clone the repository
                 git branch: 'scenarios', url: 'https://github.com/vijaypk179/vpspk_karateautomation.git'
+                 echo 'Checkout success'
             }
         }
 
@@ -17,13 +22,15 @@ pipeline {
             steps {
                 // Clean and build the project
                 sh "${MAVEN_HOME}/bin/mvn clean install"
+                echo 'Build success'
             }
         }
 
         stage('Test') {
             steps {
-                // Run Karate tests
-                sh "${MAVEN_HOME}/bin/mvn test"
+                // Run Karate tests with the specified tag
+                sh "${MAVEN_HOME}/bin/mvn test -Dkarate.options='--tags ${params.KARATE_TAG}'"
+                echo 'Test success'
             }
         }
 
@@ -31,6 +38,7 @@ pipeline {
             steps {
                 // Generate Karate reports
                 sh "${MAVEN_HOME}/bin/mvn karate:report"
+                 echo 'Report success'
             }
         }
     }
@@ -40,6 +48,7 @@ pipeline {
             // Archive test results and reports
             archiveArtifacts artifacts: '**/target/**/*.json', allowEmptyArchive: true
             archiveArtifacts artifacts: '**/target/**/*.html', allowEmptyArchive: true
+             echo 'archiveArtifacts success'
         }
         success {
             echo 'Pipeline completed successfully!'
