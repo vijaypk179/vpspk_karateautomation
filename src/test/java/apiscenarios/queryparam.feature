@@ -20,3 +20,22 @@ Feature: Test query param endpoint
       | 3   | 5   | 10  |
       | 1   | 2   | 4   |
       | 7   | 8   | 9   |
+
+  @getAPIwithOffsetLimit
+  Scenario Outline: Get products with offset <offset> and limit <limit>
+    * url 'https://api.escuelajs.co/api/v1/'
+    Given path 'products'
+    And param offset = <offset>
+    And param limit = <limit>
+    When method GET
+    Then status 200
+    And match response == '#[]'
+    And assert response.length <= <limit>
+
+    Examples:
+      | offset | limit |
+      | 0      | 5     |
+      | 0      | 10    |
+      | 5      | 5     |
+      | 10     | 10    |
+      | 20     | 5     |
