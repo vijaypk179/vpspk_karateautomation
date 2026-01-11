@@ -34,27 +34,23 @@ pipeline {
             }
         }
 
-        stage('Generate Report') {
-            steps {
-                // Generate Karate reports
-                bat "${MAVEN_HOME}/bin/mvn karate:report"
-                 echo 'Report success'
-            }
-        }
+//         stage('Generate Report') {
+//             steps {
+//                 // Generate Karate reports
+//                 bat "${MAVEN_HOME}/bin/mvn karate:report"
+//                  echo 'Report success'
+//             }
+//         }
     }
 
-    /* post {
-        always {
-            // Archive test results and reports
-            archiveArtifacts artifacts: '**//* target *//** /* *//*.json', allowEmptyArchive: true
-            archiveArtifacts artifacts: '**//* target *//** /* *//*.html', allowEmptyArchive: true
-             echo 'archiveArtifacts success'
+    post {
+            always {
+                publishHTML([
+                    reportDir: 'target/karate-reports',
+                    reportFiles: 'karate-summary.html',
+                    reportName: 'Karate Automation Report',
+                    keepAll: true
+                ])
+            }
         }
-        success {
-            echo 'Pipeline completed successfully!'
-        }
-        failure {
-            echo 'Pipeline failed!'
-        }
-    } */
 }
