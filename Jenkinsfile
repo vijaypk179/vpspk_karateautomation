@@ -21,7 +21,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Clean and build the project
-                sh "${MAVEN_HOME}/bin/mvn clean install"
+                sh "mvn clean install"
                 echo 'Build success'
             }
         }
