@@ -8,7 +8,7 @@ function fn() {
   var config = {
     env: env,
     myVarName: 'someValue',
-     githubToken: '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'
+     githubToken: 'replacetoken'
   }
   if (env == 'dev') {
     // customize
