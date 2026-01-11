@@ -21,7 +21,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Clean and build the project
-                sh "${MAVEN_HOME}/bin/mvn clean install"
+                bat "${MAVEN_HOME}/bin/mvn clean install"
                 echo 'Build success'
             }
         }
@@ -29,7 +29,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Run Karate tests with the specified tag
-                sh "${MAVEN_HOME}/bin/mvn test -Dkarate.options='--tags ${params.KARATE_TAG}'"
+                bat "${MAVEN_HOME}/bin/mvn test -Dkarate.options='--tags ${params.KARATE_TAG}'"
                 echo 'Test success'
             }
         }
@@ -37,7 +37,7 @@ pipeline {
         stage('Generate Report') {
             steps {
                 // Generate Karate reports
-                sh "${MAVEN_HOME}/bin/mvn karate:report"
+                bat "${MAVEN_HOME}/bin/mvn karate:report"
                  echo 'Report success'
             }
         }
