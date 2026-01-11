@@ -1,12 +1,14 @@
 function fn() {
   var env = karate.env; // get system property 'karate.env'
+  var githubToken ="";
   karate.log('karate.env system property was:', env);
   if (!env) {
     env = 'dev';
   }
   var config = {
     env: env,
-    myVarName: 'someValue'
+    myVarName: 'someValue',
+     githubToken: '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'
   }
   if (env == 'dev') {
     // customize
@@ -14,5 +16,7 @@ function fn() {
   } else if (env == 'e2e') {
     // customize
   }
+
+karate.log(config)
   return config;
 }

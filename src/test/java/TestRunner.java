@@ -16,7 +16,7 @@ class TestRunner {
 
     @Test
     void testParallel() {
-        Results results = Runner.path("classpath:mockserver").tags("mockapitest")
+        Results results = Runner.path("classpath:authentication").tags("ouathtesting")
                 .outputCucumberJson(true)
                 .parallel(5);
         //Cucumber Report
