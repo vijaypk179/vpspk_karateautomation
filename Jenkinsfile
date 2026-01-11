@@ -43,11 +43,11 @@ pipeline {
         }
     }
 
-    post {
+    /* post {
         always {
             // Archive test results and reports
-            archiveArtifacts artifacts: '**/target/**/*.json', allowEmptyArchive: true
-            archiveArtifacts artifacts: '**/target/**/*.html', allowEmptyArchive: true
+            archiveArtifacts artifacts: '**//* target *//** /* *//*.json', allowEmptyArchive: true
+            archiveArtifacts artifacts: '**//* target *//** /* *//*.html', allowEmptyArchive: true
              echo 'archiveArtifacts success'
         }
         success {
@@ -56,5 +56,5 @@ pipeline {
         failure {
             echo 'Pipeline failed!'
         }
-    }
+    } */
 }
