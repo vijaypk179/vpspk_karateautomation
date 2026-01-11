@@ -16,7 +16,7 @@ class TestRunner {
 
     @Test
     void testParallel() {
-        Results results = Runner.path("classpath:apiscenarios").tags("postfileupload")
+        Results results = Runner.path("classpath:apiscenarios").tags("getAPIwithOffsetLimit")
                 .outputCucumberJson(true)
                 .parallel(5);
         //Cucumber Report
