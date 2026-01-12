@@ -49,7 +49,9 @@ pipeline {
                     reportDir: 'target/karate-reports',
                     reportFiles: 'karate-summary.html',
                     reportName: 'Karate Automation Report',
-                    keepAll: true
+                    keepAll: true,
+                    alwaysLinkToLastBuild: true,
+                    allowMissing: true
                 ])
                 emailext(
                             to: 'vijay.pk179@gmail.com',
