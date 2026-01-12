@@ -16,7 +16,7 @@ class TestRunner {
 
     @Test
     void testParallel() {
-        Results results = Runner.path("classpath:apiscenarios").tags("getAPIwithOffsetLimit")
+        Results results = Runner.path("classpath:UIvalidation").tags("uiloginPageValidation")
                 .outputCucumberJson(true)
                 .parallel(5);
         //Cucumber Report

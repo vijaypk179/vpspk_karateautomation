@@ -49,8 +49,17 @@ pipeline {
                     reportDir: 'target/karate-reports',
                     reportFiles: 'karate-summary.html',
                     reportName: 'Karate Automation Report',
-                    keepAll: true
+                    keepAll: true,
+                    alwaysLinkToLastBuild: true,
+                    allowMissing: true
                 ])
+                emailext(
+                            to: 'vijay.pk179@gmail.com',
+                            subject: "Jenkins Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' - ${currentBuild.currentResult}",
+                            body: """<p>Jenkins Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' has finished with status: ${currentBuild.currentResult}.</p>
+                                     <p>Check the detailed report <a href="${env.BUILD_URL}">here</a>.</p>""",
+                            mimeType: 'text/html'
+                        )
             }
         }
 }

@@ -8,7 +8,8 @@ function fn() {
   var config = {
     env: env,
     myVarName: 'someValue',
-     githubToken: 'replacetoken'
+    githubToken: 'replacetoken',
+    baseUrl: 'https://www.saucedemo.com/'
   }
   if (env == 'dev') {
     // customize
@@ -17,6 +18,8 @@ function fn() {
     // customize
   }
 
+karate.configure('driver', {type: 'chrome',executablePath: 'src/test/java/resources/chromedriver.exe',headless: false,timeout: 30000,slowMo: 0,addOptions: ['--start-maximized','--disable-notifications','--disable-infobars']});
+karate.configure('retry', { count: 3, interval: 2000 });
 karate.log(config)
   return config;
 }
