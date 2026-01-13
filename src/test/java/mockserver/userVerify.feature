@@ -2,9 +2,10 @@
 Feature: Test User API using Karate Mock Server
 
   Background:
-    * url 'http://localhost:8080'
+    * url 'http://localhost:8081'
     * header Content-Type = 'application/json'
 
+  @userCRUDusingMockServer
   Scenario: Create, Get and Delete User
 
     # Create User
