@@ -16,7 +16,7 @@ class TestRunner {
 
     @Test
     void testParallel() {
-        Results results = Runner.path("classpath:features").tags("getSortedList")
+        Results results = Runner.path("classpath:features").tags("fileDownloadTest")
                 .outputCucumberJson(true)
                 .parallel(5);
         //Cucumber Report

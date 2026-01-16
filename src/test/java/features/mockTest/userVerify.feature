@@ -31,3 +31,15 @@ Feature: Test User API using Karate Mock Server
     Given path 'users', 101
     When method DELETE
     Then status 204
+
+  @fileDownloadTest
+  Scenario: Download file and validate response
+    Given path 'download'
+    When method get
+    Then status 200
+
+  # Check that the content matches what we expect
+    * match response == read('classpath:resources/sample.txt')
+
+    # Save it to target folder to see it physically
+    * karate.write(response, 'actual-download.txt')
