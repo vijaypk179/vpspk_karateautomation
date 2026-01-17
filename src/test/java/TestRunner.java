@@ -16,7 +16,7 @@ class TestRunner {
 
     @Test
     void testParallel() {
-        Results results = Runner.path("classpath:UIvalidation").tags("uiloginPageValidation")
+        Results results = Runner.path("classpath:features").tags("userSortingbyNamedescending")
                 .outputCucumberJson(true)
                 .parallel(5);
         //Cucumber Report
