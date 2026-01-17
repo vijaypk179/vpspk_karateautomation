@@ -42,7 +42,7 @@ Feature: Login and access profile using JWT token
     When method get
     Then status 200
 
-  # Basic validations
+  # invalid authentication
     And match response.id == 1
     And match response.email == 'john@mail.com'
 
