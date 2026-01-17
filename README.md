@@ -4,3 +4,94 @@ Refer to the [Getting Started Guide](https://github.com/karatelabs/karate/wiki/G
 
 To Run Jenkins:
 java -jar jenkins.war
+
+
+# Karate Template
+
+This repository demonstrates API testing using the Karate Framework. Below is a detailed explanation of the test annotations used in this framework and the corresponding API endpoints.
+
+---
+
+## **Annotations and Test Scenarios**
+
+### 1. `@mockapitest`
+- **Description**: This annotation is used for scenarios that test the mock server functionality.
+- **Example**:
+    - **Scenario**: Create, Get, and Delete User
+    - **API Endpoint**: `http://localhost:8081/users`
+    - **Details**:
+        - **POST**: Creates a user with the provided details.
+        - **GET**: Retrieves the user details by ID.
+        - **DELETE**: Deletes the user by ID.
+
+---
+
+### 2. `@fileDownloadTest`
+- **Description**: This annotation is used for scenarios that test file download functionality.
+- **Example**:
+    - **Scenario**: Download file and validate response
+    - **API Endpoint**: `http://localhost:8081/download`
+    - **Details**:
+        - **GET**: Downloads a file and validates its content.
+
+---
+
+### 3. `@apiversioning`
+- **Description**: This annotation is used for scenarios that test API versioning.
+- **Example**:
+    - **Scenario**: Verify v1 API response
+    - **API Endpoint**: `http://localhost:8081/api/v1/users`
+    - **Details**:
+        - **GET**: Retrieves user details for version 1 of the API.
+    - **Scenario**: Verify v2 API response
+    - **API Endpoint**: `http://localhost:8081/api/v2/users`
+    - **Details**:
+        - **GET**: Retrieves user details for version 2 of the API.
+
+---
+
+### 4. `@userSortingbyNameascending`
+- **Description**: This annotation is used for scenarios that test sorting functionality in ascending order.
+- **Example**:
+    - **Scenario**: Verify ascending sort
+    - **API Endpoint**: `http://localhost:8081/api/users?sort=asc`
+    - **Details**:
+        - **GET**: Retrieves a list of users sorted by name in ascending order.
+
+---
+
+### 5. `@userSortingbyNamedescending`
+- **Description**: This annotation is used for scenarios that test sorting functionality in descending order.
+- **Example**:
+    - **Scenario**: Verify descending sort
+    - **API Endpoint**: `http://localhost:8081/api/users?sort=desc`
+    - **Details**:
+        - **GET**: Retrieves a list of users sorted by name in descending order.
+
+---
+
+### 6. `@getAPIwithQueryParam`
+- **Description**: This annotation is used for scenarios that test API endpoints with query parameters.
+- **Example**:
+    - **Scenario**: Get objects by IDs via query params
+    - **API Endpoint**: `https://api.restful-api.dev/objects`
+    - **Details**:
+        - **GET**: Retrieves objects by passing multiple `id` query parameters.
+
+---
+
+### 7. `@getAPIwithOffsetLimit`
+- **Description**: This annotation is used for scenarios that test pagination using offset and limit query parameters.
+- **Example**:
+    - **Scenario**: Get products with offset and limit
+    - **API Endpoint**: `https://api.escuelajs.co/api/v1/products`
+    - **Details**:
+        - **GET**: Retrieves a paginated list of products using `offset` and `limit` query parameters.
+
+---
+
+## **How to Run the Tests**
+
+1. **Start the Mock Server**:
+   ```bash
+   mvn exec:java -Dexec.mainClass=MockServerRunner
