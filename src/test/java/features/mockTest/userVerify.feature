@@ -63,4 +63,20 @@ Feature: Test User API using Karate Mock Server
     And match response.users[0].lastName == 'Pandi'
     And match response.meta.count == 1
 
+  @userSortingbyNameascending
+  Scenario: Verify ascending sort
+    Given path 'api', 'users'
+    And param sort = 'asc'
+    When method get
+    Then status 200
+    And match response[*].name == ["Arun","Jane","Karthik","Vijay","Zack"]
+
+  @userSortingbyNamedescending
+  Scenario: Verify descending sort
+    Given path 'api', 'users'
+    And param sort = 'desc'
+    When method get
+    Then status 200
+    And match response[*].name == ["Zack","Vijay","Karthik","Jane","Arun"]
+
 

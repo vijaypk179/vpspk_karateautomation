@@ -69,3 +69,23 @@ Background:
     }
     """
     * def status = 200
+
+  Scenario: pathMatches('/api/users') && methodIs('get')
+    * def users =
+    """
+    [
+      { "id": 3, "name": "Karthik" },
+      { "id": 1, "name": "Arun" },
+      { "id": 2, "name": "Vijay" },
+      { "id": 5, "name": "Jane" },
+      { "id": 4, "name": "Zack" }
+    ]
+    """
+
+    * def sort = requestParams.sort
+
+    * if (sort == 'asc') users.sort((a, b) => a.name.localeCompare(b.name))
+    * if (sort == 'desc') users.sort((a, b) => b.name.localeCompare(a.name))
+
+    * def response = users
+    * def status = 200
