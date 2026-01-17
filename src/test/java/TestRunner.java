@@ -16,7 +16,7 @@ class TestRunner {
 
     @Test
     void testParallel() {
-        Results results = Runner.path("classpath:features").tags("userSortingbyNamedescending")
+        Results results = Runner.path("classpath:features").tags("jwthappypath")
                 .outputCucumberJson(true)
                 .parallel(5);
         //Cucumber Report
