@@ -43,3 +43,24 @@ Feature: Test User API using Karate Mock Server
 
     # Save it to target folder to see it physically
     * karate.write(response, 'actual-download.txt')
+
+  @apiversioning
+  Scenario: Verify v1 API response
+    Given path 'api', 'v1', 'users'
+    When method get
+    Then status 200
+    And match response.version == 'v1'
+    And match response.users[0].name == 'Vijay'
+    And match response.users[0] !contains { firstName: '#string' }
+
+  @apiversioning
+  Scenario: Verify v2 API response
+    Given path 'api', 'v2', 'users'
+    When method get
+    Then status 200
+    And match response.version == 'v2'
+    And match response.users[0].firstName == 'Vijay'
+    And match response.users[0].lastName == 'Pandi'
+    And match response.meta.count == 1
+
+

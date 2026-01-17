@@ -16,7 +16,7 @@ class TestRunner {
 
     @Test
     void testParallel() {
-        Results results = Runner.path("classpath:features").tags("cookieTest")
+        Results results = Runner.path("classpath:features").tags("apiversioning")
                 .outputCucumberJson(true)
                 .parallel(5);
         //Cucumber Report

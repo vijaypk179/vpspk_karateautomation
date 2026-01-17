@@ -1,7 +1,8 @@
 Feature: User Mock Server
 
 Background:
-* def filePath = 'classpath:resources/sample.txt'
+  * def filePath = 'classpath:resources/sample.txt'
+  * configure cors = true
 
 
   Scenario: pathMatches('/users') && methodIs('post')
@@ -41,3 +42,30 @@ Background:
 
   # 3. Return Success
     * def responseStatus = 200
+
+  Scenario: pathMatches('/api/v1/users') && methodIs('get')
+    * def response =
+    """
+    {
+      "version": "v1",
+      "users": [
+        { "id": 1, "name": "Vijay" }
+      ]
+    }
+    """
+    * def status = 200
+
+  Scenario: pathMatches('/api/v2/users') && methodIs('get')
+    * def response =
+    """
+    {
+      "version": "v2",
+      "users": [
+        { "id": 1, "firstName": "Vijay", "lastName": "Pandi" }
+      ],
+      "meta": {
+        "count": 1
+      }
+    }
+    """
+    * def status = 200
