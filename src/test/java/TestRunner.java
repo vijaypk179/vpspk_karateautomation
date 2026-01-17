@@ -16,7 +16,7 @@ class TestRunner {
 
     @Test
     void testParallel() {
-        Results results = Runner.path("classpath:features").tags("jwthappypath")
+        Results results = Runner.path("classpath:features").tags("base64DecodeTest")
                 .outputCucumberJson(true)
                 .parallel(5);
         //Cucumber Report

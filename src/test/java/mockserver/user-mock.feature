@@ -3,6 +3,7 @@ Feature: User Mock Server
 Background:
   * def filePath = 'classpath:resources/sample.txt'
   * configure cors = true
+  * def Base64Util = Java.type('utils.Base64Util')
 
 
   Scenario: pathMatches('/users') && methodIs('post')
@@ -88,4 +89,38 @@ Background:
     * if (sort == 'desc') users.sort((a, b) => b.name.localeCompare(a.name))
 
     * def response = users
+    * def status = 200
+
+# ---------------- ENCODE API ----------------
+  Scenario: pathMatches('/base64/encode') && methodIs('post')
+    * def input = request.data
+
+    * if (!input) { karate.response = { error: 'Input is required' }; karate.set('responseStatus', 400)}
+
+    * def encoded = Base64Util.encode(input)
+
+    * def response =
+  """
+  {
+    original: '#(input)',
+    encoded: '#(encoded)'
+  }
+  """
+    * def status = 200
+
+# ---------------- DECODE API ----------------
+  Scenario: pathMatches('/base64/decode') && methodIs('post')
+    * def encoded = request.data
+
+    * if (!encoded) { karate.response = { error: 'Encoded value is required' }; karate.set('responseStatus', 400)}
+
+    * def decoded = Base64Util.decode(encoded)
+
+    * def response =
+  """
+  {
+    encoded: '#(encoded)',
+    decoded: '#(decoded)'
+  }
+  """
     * def status = 200
