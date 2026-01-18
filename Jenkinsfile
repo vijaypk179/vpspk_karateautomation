@@ -7,13 +7,14 @@ pipeline {
 
     parameters {
         string(name: 'KARATE_TAG', defaultValue: '@getAPIwithOffsetLimit', description: 'Karate tag to run')
+        string(name: 'GIT_BRANCH',defaultValue: 'main',description: 'Git branch to checkout')
     }
 
     stages {
         stage('Checkout') {
             steps {
                 // Clone the repository
-                git branch: 'scenario4', url: 'https://github.com/vijaypk179/vpspk_karateautomation.git'
+                git branch: "${params.GIT_BRANCH}", url: 'https://github.com/vijaypk179/vpspk_karateautomation.git'
                  echo 'Checkout success'
             }
         }
