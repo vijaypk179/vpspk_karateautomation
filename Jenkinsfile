@@ -29,7 +29,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Run Karate tests with the specified tag
-                bat "${MAVEN_HOME}/bin/mvn clean test -Dkarate.options=\"--tags ${params.KARATE_TAG}\""
+                bat "${MAVEN_HOME}/bin/mvn clean test  -Dtest=TestRunner -Dkarate.options=\"--tags ${params.KARATE_TAG}\""
                 echo 'Test success'
             }
         }

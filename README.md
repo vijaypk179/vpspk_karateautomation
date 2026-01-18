@@ -2,7 +2,7 @@
 
 Refer to the [Getting Started Guide](https://github.com/karatelabs/karate/wiki/Get-Started:-Maven-and-Gradle#github-template) for instructions.
 
-To Run Jenkins:
+To Run Jenkins in 8080 port:
 java -jar jenkins.war
 
 
