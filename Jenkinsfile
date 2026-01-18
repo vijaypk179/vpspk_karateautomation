@@ -13,7 +13,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Clone the repository
-                git branch: 'scenarios', url: 'https://github.com/vijaypk179/vpspk_karateautomation.git'
+                git branch: 'scenarios4', url: 'https://github.com/vijaypk179/vpspk_karateautomation.git'
                  echo 'Checkout success'
             }
         }
