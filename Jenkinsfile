@@ -40,7 +40,7 @@ pipeline {
                 withSonarQubeEnv('SonarQube') {
                     bat """
                     ${MAVEN_HOME}/bin/mvn sonar:sonar ^
-                    -Dsonar.projectKey=karate-automation
+                    -Dsonar.projectKey=automationtoken
                     """
                 }
                 echo 'SonarQube analysis completed'
