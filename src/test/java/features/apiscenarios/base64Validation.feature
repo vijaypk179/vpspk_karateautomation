@@ -1,3 +1,4 @@
+@mockapitest
 Feature: Test Base64 Encode/Decode
 
 #  Base64 is NOT encryption.It is encoding, used for safe data transport.
