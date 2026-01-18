@@ -95,3 +95,57 @@ This repository demonstrates API testing using the Karate Framework. Below is a 
 1. **Start the Mock Server**:
    ```bash
    mvn exec:java -Dexec.mainClass=MockServerRunner
+---
+**Overview**
+
+    1.Clones the Karate automation project from GitHub
+    
+    2.Builds the project using Maven
+    
+    3.Executes Karate tests based on a tag parameter
+    
+    4.Publishes Karate HTML reports
+    
+    5.Sends email notification after job completion
+
+🛠 Prerequisites
+
+Before running this pipeline, ensure:
+
+    1.Jenkins is installed and running
+    
+    2.Maven is configured in Jenkins as a global tool named Maven
+    
+    3.Java (JDK 8 or above) is installed
+    
+    4.Jenkins plugins installed:
+    
+    5.Git
+    
+    6.HTML Publisher
+    
+    7.Email Extension Plugin
+
+Pipeline Stages
+
+1 ️ Checkout
+
+    Clones the repository from GitHub
+    
+    Uses branch: scenario4
+
+2 Build
+
+    Cleans and builds the project
+    
+    Skips test execution during build
+
+    mvn clean install -DskipTests
+
+3 Test
+
+    Executes Karate tests using TestRunner
+    
+    Runs only scenarios matching the provided tag
+    
+    mvn clean test -Dtest=TestRunner -Dkarate.options="--tags @tagName"
