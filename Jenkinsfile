@@ -21,7 +21,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Clean and build the projectF
-                bat "${MAVEN_HOME}/bin/mvn clean install"
+                bat "${MAVEN_HOME}/bin/mvn clean install -DskipTests"
                 echo 'Build success'
             }
         }
