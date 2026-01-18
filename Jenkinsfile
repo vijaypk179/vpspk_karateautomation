@@ -11,8 +11,8 @@ pipeline {
     }
 
     parameters {
-        string(name: 'KARATE_TAG', defaultValue: '@getAPIwithOffsetLimit', description: 'Karate tag to run')
-        string(name: 'GIT_BRANCH',defaultValue: 'main',description: 'Git branch to checkout')
+        string(name: 'KARATE_TAG', defaultValue: '@mockapitest', description: 'Karate tag to run')
+        string(name: 'GIT_BRANCH',defaultValue: 'scenario5',description: 'Git branch to checkout')
     }
 
     stages {
