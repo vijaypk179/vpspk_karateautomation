@@ -13,15 +13,15 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Clone the repository
-                git branch: 'scenarios', url: 'https://github.com/vijaypk179/vpspk_karateautomation.git'
+                git branch: 'scenario4', url: 'https://github.com/vijaypk179/vpspk_karateautomation.git'
                  echo 'Checkout success'
             }
         }
 
         stage('Build') {
             steps {
-                // Clean and build the project
-                bat "${MAVEN_HOME}/bin/mvn clean install"
+                // Clean and build the projectF
+                bat "${MAVEN_HOME}/bin/mvn clean install -DskipTests"
                 echo 'Build success'
             }
         }
@@ -29,7 +29,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Run Karate tests with the specified tag
-                bat "${MAVEN_HOME}/bin/mvn clean test -Dkarate.options=\"--tags ${params.KARATE_TAG}\""
+                bat "${MAVEN_HOME}/bin/mvn clean test  -Dtest=TestRunner -Dkarate.options=\"--tags ${params.KARATE_TAG}\""
                 echo 'Test success'
             }
         }
