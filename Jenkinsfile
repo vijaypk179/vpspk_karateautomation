@@ -34,7 +34,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
                 tools {
-                        jdk 'JDK17'   // switch JVM only here
+                        jdk 'JDK21'   // switch JVM only here
                     }
             steps {
                 withSonarQubeEnv('SonarQube') {
