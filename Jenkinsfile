@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+     tools {
+            jdk 'JDK21'     // Jenkins default
+            maven 'Maven'
+        }
+
     environment {
         MAVEN_HOME = tool name: 'Maven', type: 'maven'
     }
@@ -24,6 +29,29 @@ pipeline {
                 // Clean and build the projectF
                 bat "${MAVEN_HOME}/bin/mvn clean install -DskipTests"
                 echo 'Build success'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+                tools {
+                        jdk 'JDK17'   // switch JVM only here
+                    }
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    bat """
+                    ${MAVEN_HOME}/bin/mvn sonar:sonar ^
+                    -Dsonar.projectKey=karate-automation
+                    """
+                }
+                echo 'SonarQube analysis completed'
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 2, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
 
